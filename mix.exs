@@ -53,4 +53,14 @@ defmodule Captcha.Mixfile do
   defp aliases do
     [clean: ["clean", "clean.make"]]
   end
+
+  defp package do
+    [
+     name: :captcha,
+     files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*", "src", "test", "config", "Makefile"],
+     maintainers: ["davidqhr"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/davidqhr/elixir-captcha",
+              "Docs" => "https://github.com/davidqhr/elixir-captcha"}]
+  end
 end
