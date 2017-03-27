@@ -65,7 +65,7 @@ defmodule Captcha.Mixfile do
   defp package do
     [
      name: :captcha,
-     files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*", "src", "test", "config", "Makefile"],
+     files: ["lib", "priv", "mix.exs", "README*", "LICENSE*", "src", "test", "config", "Makefile"],
      maintainers: ["davidqhr"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/davidqhr/elixir-captcha",
