@@ -1,6 +1,6 @@
 defmodule Captcha do
   def get() do
-    Port.open({:spawn, "priv/captcha"}, [:binary])
+    Port.open({:spawn, Path.join(Path.dirname(__ENV__.file), "../priv/captcha")}, [:binary])
 
     receive do
       {_, {:data, data}} ->
