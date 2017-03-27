@@ -26,7 +26,9 @@ defmodule Captcha.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      compilers: [:make, :elixir, :app],
+     description: description(),
      aliases: aliases,
+     package: package(),
      deps: deps()]
   end
 
@@ -52,6 +54,12 @@ defmodule Captcha.Mixfile do
 
   defp aliases do
     [clean: ["clean", "clean.make"]]
+  end
+
+  defp description do
+    """
+    This is a Elixir lib for generating captcha. No dependencies. It drawing captcha image with C code. No ImageMagick, No RMagick.
+    """
   end
 
   defp package do
