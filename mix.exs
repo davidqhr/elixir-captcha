@@ -27,7 +27,7 @@ defmodule Captcha.Mixfile do
      start_permanent: Mix.env == :prod,
      compilers: [:make, :elixir, :app],
      description: description(),
-     aliases: aliases,
+     aliases: aliases(),
      package: package(),
      deps: deps()]
   end
