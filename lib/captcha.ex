@@ -8,7 +8,7 @@ defmodule Captcha do
         {:ok, text, img }
       other -> other
     after
-      1_000 -> { :timeout }
+      10_000 -> { :timeout }
     end
   end
 end
