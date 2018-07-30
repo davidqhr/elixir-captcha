@@ -28,6 +28,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 ## Usage
 
 ```elixir
+# allow customize receive timeout, default: 10_000
 case Captcha.get() do
   {:ok, text, img_binary } ->
     # save text in session, then send img to client
