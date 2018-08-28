@@ -1,14 +1,17 @@
 defmodule Captcha do
-  def get() do
+  # allow customize receive timeout, default: 10_000
+  def get(timeout \\ 1_000) do
     Port.open({:spawn, Path.join(:code.priv_dir(:captcha), "captcha")}, [:binary])
 
+    # Allow set receive timeout
     receive do
       {_, {:data, data}} ->
         <<text::bytes-size(5), img::binary>> = data
         {:ok, text, img }
+
       other -> other
-    after
-      1_000 -> { :timeout }
+    after timeout ->
+      {:timeout}
     end
   end
 end
