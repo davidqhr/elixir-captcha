@@ -1,33 +1,15 @@
-defmodule Mix.Tasks.Compile.Make do
-  def run(_) do
-    {result, _error_code} = System.cmd("make", [], stderr_to_stdout: true)
-    Mix.shell.info result
-
-    :ok
-  end
-end
-
-defmodule Mix.Tasks.Clean.Make do
-  def run(_) do
-    {result, _error_code} = System.cmd("make", ["clean"], stderr_to_stdout: true)
-    Mix.shell.info result
-
-    :ok
-  end
-end
-
 defmodule Captcha.Mixfile do
   use Mix.Project
 
   def project do
     [app: :captcha,
      version: "0.1.0",
-     elixir: "~> 1.3",
+     elixir: "~> 1.9",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     compilers: [:make, :elixir, :app],
+     compilers: [:elixir_make, :elixir, :app],
+     make_clean: ["clean"],
      description: description(),
-     aliases: aliases(),
      package: package(),
      deps: deps()]
   end
@@ -36,7 +18,7 @@ defmodule Captcha.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   # Dependencies can be Hex packages:
@@ -49,11 +31,10 @@ defmodule Captcha.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:ex_doc, ">= 0.0.0", only: :dev}]
-  end
-
-  defp aliases do
-    [clean: ["clean", "clean.make"]]
+    [
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:elixir_make, "~> 0.8", runtime: false}
+    ]
   end
 
   defp description do
